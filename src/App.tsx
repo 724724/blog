@@ -8,15 +8,15 @@ import Portal from '@mui/material/Portal';
 import { lightTheme, darkTheme } from './assets/theme';
 import { MenuProvider, useMenu } from './contexts/MenuContext';
 import { MusicPlayerProvider, useMusicPlayer } from './contexts/MusicPlayerContext';
-import MenuDrawer from './layouts/MenuDrawer';
-import NowPlayingDrawer from './pages/NowPlayingDrawer';
+import MenuDrawer from './components/MenuDrawer';
+import NowPlayingDrawer from './features/NowPlayingDrawer';
 
-import Header from './layouts/Header';
-import NavBar from './layouts/NavBar';
-import MainPage from './pages/MainPage';
-import AboutPage from './pages/AboutPage';
-import PostsPage from './pages/PostsPage';
-import PostDetailPage from './pages/PostDetailPage';
+import Header from './components/Header';
+import NavBar from './components/NavBar';
+import MainPage from './features/MainPage';
+import AboutPage from './features/AboutPage';
+import PostsPage from './features/PostsPage';
+import PostDetailPage from './features/PostDetailPage';
 
 const MainContent = () => {
   const { isMenuOpen } = useMenu();

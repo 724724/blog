@@ -7,6 +7,7 @@ export interface LoadedPost {
   date: string;
   excerpt: string;
   thumbnail: string; // resolved URL
+  song?: string; // YouTube URL from frontmatter
   slug: string;
   content: string;
 }
@@ -63,6 +64,7 @@ export function loadPosts(): LoadedPost[] {
       date: data.date ?? '1970-01-01',
       excerpt: data.excerpt ?? '',
       thumbnail: resolvedThumb,
+      song: data.song ?? undefined,
       slug,
       content,
     } satisfies LoadedPost;

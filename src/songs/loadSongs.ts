@@ -22,7 +22,7 @@ function ensureArray(input: SongJson): string[] {
   return [];
 }
 
-async function fetchYoutubeMeta(url: string): Promise<{ title: string; artist: string; thumbnail: string }> {
+export async function fetchYoutubeMeta(url: string): Promise<{ title: string; artist: string; thumbnail: string }> {
   // Use noembed to avoid CORS issues and get metadata + thumbnail
   const endpoint = `https://noembed.com/embed?url=${encodeURIComponent(url)}`;
   const res = await fetch(endpoint);

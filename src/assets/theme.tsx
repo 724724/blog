@@ -1,6 +1,10 @@
 import { createTheme } from '@mui/material/styles';
 
+
 const lightTheme = createTheme({
+  typography: {
+    fontFamily: 'Pretendard, sans-serif',
+  },
   palette: {
     mode: 'light',
     primary: {
@@ -17,6 +21,9 @@ const lightTheme = createTheme({
 });
 
 const darkTheme = createTheme({
+  typography: {
+    fontFamily: 'Pretendard, sans-serif',
+  },
   palette: {
     mode: 'dark',
     primary: {

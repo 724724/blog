@@ -4,6 +4,9 @@ import logoImage from '../assets/logo.png';
 
 export default function Header() {
   const handleScrollToTop = () => {
+    // Dispatch custom event for components with internal scroll containers
+    window.dispatchEvent(new CustomEvent('blog-scroll-to-top'));
+
     window.scrollTo({
       top: 0,
       behavior: 'smooth',

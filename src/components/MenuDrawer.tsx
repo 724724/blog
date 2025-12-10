@@ -1,6 +1,6 @@
 import Drawer from '@mui/material/Drawer';
 import { useMenu } from '../contexts/MenuContext';
-import MenuPage from '../pages/MenuPage';
+import MenuPage from '../features/MenuPage';
 
 const MenuDrawer = () => {
   const { isMenuOpen, closeMenu } = useMenu();

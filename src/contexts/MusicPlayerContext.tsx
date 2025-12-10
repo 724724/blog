@@ -24,6 +24,7 @@ interface MusicPlayerContextType {
   playNext: () => void;
   playPrevious: () => void;
   selectTrack: (index: number) => void;
+  setPlaylist: (newTracks: Track[]) => void;
   isShuffling: boolean;
   toggleShuffle: () => void;
   repeatMode: 'off' | 'all' | 'one';
@@ -148,6 +149,15 @@ export const MusicPlayerProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  const setPlaylist = (newTracks: Track[]) => {
+    setTracks(newTracks);
+    setCurrentTrackIndex(0);
+    // Reset shuffle state to logical defaults
+    setShuffleOrder(null); 
+    setShuffleIndex(0);
+    setIsShuffling(false);
+  };
+
   const toggleShuffle = () => {
     setIsShuffling((s) => {
       const next = !s;
@@ -188,6 +198,7 @@ export const MusicPlayerProvider = ({ children }: { children: ReactNode }) => {
     playNext,
     playPrevious,
     selectTrack,
+    setPlaylist,
     isShuffling,
     toggleShuffle,
     repeatMode,
