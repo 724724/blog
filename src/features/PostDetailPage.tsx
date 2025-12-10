@@ -167,7 +167,7 @@ export default function PostDetailPage() {
       aspectRatio: '1 / 1',
       position: 'relative' as const,
       overflow: 'hidden',
-      borderRadius: 4, // Consistent radius for mobile and desktop
+      borderRadius: '24px', // Explicit larger radius
       boxShadow: isMobile ? 'none' : '0 4px 30px rgba(0,0,0,0.1)',
       bgcolor: 'black',
       cursor: 'pointer',
@@ -424,17 +424,25 @@ export default function PostDetailPage() {
             }}>
                  {/* Thumbnail */}
                  <Box sx={{ 
-                     width: isMobile ? '100%' : '500px', // Match content image width
+                     width: isMobile ? 'auto' : '500px', // Auto width to respect aspect ratio with max-height
+                     // width: isMobile ? '100%' : '500px', // OLD
                      maxWidth: isMobile ? '100%' : '40vw',
+                     maxHeight: isMobile ? '45vh' : 'none', // Constraint height on mobile
+                     mx: 'auto', // Centering
+                     aspectRatio: '1/1', // Maintain square aspect ratio
                  }}>
                      <Box 
-                         sx={squareImageContainerStyle}
+                         sx={{
+                            ...squareImageContainerStyle,
+                            height: '100%', // Fill the container
+                         }}
                          onClick={() => post.thumbnail && handleOpenImage(post.thumbnail)}
                      >
                         {post.thumbnail && (
                              <Box
                               component="img"
                               src={post.thumbnail}
+                              referrerPolicy="no-referrer"
                               alt={post.title}
                               sx={{
                                   width: '100%',
@@ -458,7 +466,7 @@ export default function PostDetailPage() {
                         {post.title}
                     </Typography>
                     <Typography variant="h6" color="text.secondary">
-                         {new Date(post.date).toLocaleDateString()}
+                         {new Date(post.date).toLocaleDateString('en-US', { timeZone: 'UTC' })}
                     </Typography>
                  </Box>
             </Box>
@@ -484,8 +492,11 @@ export default function PostDetailPage() {
                 }}>
                     {/* Image Side */ }
                     <Box sx={{ 
-                        width: isMobile ? '100%' : '500px', // Reduce width on mobile
+                        width: isMobile ? 'auto' : '500px', // Reduce width on mobile
                         maxWidth: isMobile ? '100%' : '40vw',
+                        maxHeight: isMobile ? '45vh' : 'none', // Constraint height on mobile
+                        mx: 'auto', // Centering
+                        aspectRatio: '1/1',
                     }}>
                         <Box 
                             sx={squareImageContainerStyle}
@@ -495,6 +506,7 @@ export default function PostDetailPage() {
                                 <Box
                                  component="img"
                                  src={section.image.src}
+                                 referrerPolicy="no-referrer"
                                  alt={section.image.alt}
                                  sx={{
                                      width: '100%',
