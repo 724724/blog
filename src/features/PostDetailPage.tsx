@@ -180,15 +180,16 @@ export default function PostDetailPage() {
   // Vertical alignment adjustment
   const visualContentSx = {
       width: '100vw',
-      height: '100vh',
+      height: '100dvh', // Use dynamic viewport height for mobile
+      overflow: 'hidden', // Prevent scroll on the container itself
       display: 'flex',
-      alignItems: 'center',
+      alignItems: isMobile ? 'flex-start' : 'center', // Top align ensures consistent image start position
       justifyContent: 'center',
       scrollSnapAlign: 'start',
       scrollSnapStop: 'always', 
       flexShrink: 0,
-      pb: isMobile ? '160px' : '160px', // Add padding for mobile to clear navbar
-      pt: 0,  // Remove top padding to allow flex centering to work naturally (shifts up due to pb) 
+      pb: isMobile ? 0 : '160px', 
+      pt: isMobile ? '5px' : 0,  // Maximize height (reduced to 5px)
       boxSizing: 'border-box', 
   };
 
@@ -397,8 +398,9 @@ export default function PostDetailPage() {
         ref={containerRef}
         sx={{ 
           flex: 1, 
-          overflowY: isMobile ? 'hidden' : 'auto', 
+          overflowY: isMobile ? 'hidden' : 'auto', // Lock vertical scroll on mobile
           overflowX: isMobile ? 'auto' : 'hidden',
+          height: '100dvh', // Use dynamic viewport height
           scrollSnapType: isMobile ? 'x mandatory' : 'y mandatory',
           display: 'flex',
           flexDirection: isMobile ? 'row' : 'column',
@@ -526,7 +528,7 @@ export default function PostDetailPage() {
                         // Match image height exactly
                         aspectRatio: isMobile ? 'auto' : '1 / 1',
                         height: isMobile ? 'auto' : 'auto', 
-                        maxHeight: isMobile ? '20vh' : 'none', // Strict constraint for mobile text to ensure scroll and no overlap
+                        maxHeight: isMobile ? '15vh' : 'none', // Stricter constraint to prevent overlap
                         overflowY: 'auto',
                         overflowX: 'hidden', // Strictly prevent horizontal scroll
                         // Hide scrollbar but keep functionality if desired, or custom style
